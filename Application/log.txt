@@ -1,0 +1,11 @@
+commit 085048222d0c25e69e28f3a560caa41d537cdab7
+Author: TanyaSemashko <homachka_777@mail.ru>
+Date:   Sun Feb 12 16:13:34 2017 +0300
+
+    add status.txt
+
+commit 60c01e433e6f12997c9c2ba05e442c0e786cac9a
+Author: TanyaSemashko <homachka_777@mail.ru>
+Date:   Sun Feb 12 16:12:09 2017 +0300
+
+    add .gitignore
