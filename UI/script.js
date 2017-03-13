@@ -200,104 +200,199 @@ var articles = [
     }
 ];
 
-function getArticles(number1, number2, filterConfig){
-    if (number1 == null){
-        number1 = 0;
-    }
-    if (number2 == null){
-        number2 = 10;
-    }
-    var mas = articles.slice();
-    if (filterConfig != null) {
-        if ("author" in filterConfig){
-            for (var j = 0; j < mas.length;) {
-                console.log(123);
-                if (mas[j].author != filterConfig.author) {
-                    mas.splice(j, 1);
-                } else
-                j++;
+var baseFunctions = {
+    getArticles: function getArticles(skip, number, filterConfig) {
+        if (!skip) {
+            skip = 0;
+        }
+        if (!number) {
+            number = 10;
+        }
+        var mas = articles.slice();
+        if (!filterConfig) {
+            if ("author" in filterConfig) {
+                for (var j = 0; j < mas.length;) {
+                    if (mas[j].author != filterConfig.author) {
+                        mas.splice(j, 1);
+                    } else
+                        j++;
+                }
             }
         }
-    }
-    mas.sort(function (a, b) {
-        if (a.createdAt - b.createdAt < 0) {
-            return 1;
-        } else {
-            return -1;
+        mas.sort(function (a, b) {
+            if (a.createdAt - b.createdAt < 0) {
+                return 1;
+            } else {
+                return -1;
+            }
+        });
+        var finalMas = [];
+        for (var i = 0; i < number; i++) {
+            finalMas[i] = mas[skip + i];
         }
-    });
-    var finalMas = [];
-    for (var i = 0; i < number2; i++){
-        finalMas[i] = mas[number1 + i];
-    }
-    return finalMas;
-}
+        return finalMas;
+    },
 
-function getArticle(string) {
-    for (var i = 0; i < articles.length; i++){
-        if (articles[i].id === string){
-            return articles[i];
+    getArticle: function getArticle(string) {
+        for (var i = 0; i < articles.length; i++) {
+            if (articles[i].id === string) {
+                return articles[i];
+            }
         }
-    }
-    return null;
-}
+        /*articles.find(function(item) {
+         return articles[i].id === string;
+         });
+         return null;*/
+    },
 
-function validateArticle(object) {
-    if ("author" in object && "id" in object && "title" in object && "summary" in object && "createdAt" in object
-        && "content" in object){
-        if ((typeof object.id) != "number" || (typeof object.title) != "string" || (typeof object.author) != "string"
-        || (typeof object.summary) != "string" || (typeof object.createdAt) != "object" || (typeof object.content) != "string"){
+    validateArticle: function validateArticle(object) {
+        if ("author" in object && "id" in object && "title" in object && "summary" in object && "createdAt" in object
+            && "content" in object) {
+            if ((typeof object.id) != "number" || (typeof object.title) != "string" || (typeof object.author) != "string"
+                || (typeof object.summary) != "string" || (typeof object.createdAt) != "object" || (typeof object.content) != "string") {
+                return false;
+            }
+            if (object.title.length < 100 && object.title !== "" && object.summary.length < 200 && object.summary !== ""
+                && object.author !== "" && object.content !== "") {
+                return true;
+            } else return false;
+        } else return false;
+    },
+
+    addArticle: function addArticle(array, object) {
+        if (baseFunctions.validateArticle(object)) {
+            array[array.length] = object;
+            return true;
+        } else return false;
+    },
+
+    editArticle: function editArticle(array, ID, articleObject) {
+        if (baseFunctions.validateArticle(baseFunctions.getArticle(ID))) {
+            if (articleObject != null) {
+                if ("title" in articleObject && typeof articleObject.title == "string") {
+                    array[ID - 1].title = articleObject.title;
+                }
+                if ("summary" in articleObject && typeof articleObject.summary == "string") {
+                    array[ID - 1].summary = articleObject.summary;
+                }
+                if ("content" in articleObject && typeof articleObject.content == "string") {
+                    array[ID - 1].content = articleObject.content;
+                }
+                return true;
+            }
             return false;
         }
-        return true;
-    } else return false;
-}
-
-function addArticle (object){
-    if (validateArticle(object)){
-        articles[articles.length] = object;
-        return true;
-    } else return false;
-}
-
-function editArticle(ID, articleObject) {
-    if (validateArticle(getArticle(ID))){
-        if (articleObject != null){
-            if ("title" in articleObject && typeof articleObject.title == "string"){
-                articles[ID - 1].title = articleObject.title;
-            }
-            if ("summary" in articleObject && typeof articleObject.summary == "string"){
-                articles[ID - 1].summary = articleObject.summary;
-            }
-            if ("content" in articleObject && typeof articleObject.content == "string"){
-                articles[ID - 1].content = articleObject.content;
-            }
-            return true;
-        }
         return false;
-    } return false;
-}
-function removeArticle(ID) {
-    if (ID <= articles.length) {
-        articles.splice(ID - 1, 1);
-        return true;
-    } else return false;
+    },
+
+    removeArticle: function removeArticle(array, ID) {
+        if (array[ID]) {
+            array.splice(ID - 1, 1);
+            return true;
+        } else return false;
+    }
 }
 
 
-var art = {
+var articlesService = {
+    arrayOfArticles: [],
+    user: "Иванов Иван",
+    init: function init(articles) {
+        articlesService.arrayOfArticles = articles;
+    },
+    displayArticles: function displayArticles(articles) {
+        if (articles) {
+            articlesService.arrayOfArticles = articles;
+        }
+        var elemById = document.getElementById("content");
+        while (elemById.firstChild != null) {
+            var child = elemById.firstChild;
+            elemById.removeChild(child);
+        }
+        for (var i = 0; i < articlesService.arrayOfArticles.length; i++) {
+            var elemNews = getNew(i);
+            elemById.appendChild(document.createElement("br"));
+            elemById.appendChild(elemNews);
+        }
+        function getNew(ID) {
+            var News = document.createElement("article");
+            var Title = document.createElement("h2");
+            var Edit = document.createElement("a");
+            Edit.textContent = "Редактировать";
+            Edit.id = "edit";
+            Edit.href = "";
+            var Delete = document.createElement("a");
+            Delete.textContent = "Удалить";
+            Delete.className = "delete";
+            Delete.href = "";
+            var Summary = document.createElement("p");
+            var Info = document.createElement("p");
+            var ShowAll = document.createElement("a");
+            ShowAll.textContent = "Показать полностью...";
+            ShowAll.href = "";
+            var Date = document.createElement("span");
+            Date.id = "date";
+            var Author = document.createElement("span");
+            Author.id = "author";
+            Info.appendChild(ShowAll);
+            Info.appendChild(Date);
+            Info.appendChild(Author);
+            News.appendChild(Title);
+            News.appendChild(Edit);
+            News.appendChild(Delete);
+            News.appendChild(Summary);
+            News.appendChild(Info);
+
+            var options = {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+            };
+
+            Title.textContent = articlesService.arrayOfArticles[ID].title;
+            Summary.textContent = articlesService.arrayOfArticles[ID].summary;
+            Date.textContent = articlesService.arrayOfArticles[ID].createdAt.toLocaleDateString("ru", options);
+            Author.textContent = articlesService.arrayOfArticles[ID].author;
+
+            return News;
+        }
+    },
+
+    addNewArticle: function addNewArticle(object) {
+        baseFunctions.addArticle(articlesService.arrayOfArticles, object);
+        articlesService.displayArticles(articlesService.arrayOfArticles);
+    },
+
+    removeThisArticle: function removeThisArticle(ID) {
+        baseFunctions.removeArticle(articlesService.arrayOfArticles, ID);
+        articlesService.displayArticles(articlesService.arrayOfArticles);
+    },
+
+    editThisArticle: function editThisArticle(ID, object) {
+        baseFunctions.editArticle(articlesService.arrayOfArticles, ID, object);
+        articlesService.displayArticles(articlesService.arrayOfArticles);
+    },
+    ShowElementsForUser: function getElements(user) {}
+};
+
+var objectForAdding = {
     id: 50,
-    title: "fhmfghg",
-    summary: "dfgh",
+    title: "Новая новость",
+    summary: "Добавлена функцией addArticles()",
     createdAt: new Date("2017-02-23T13:02:01"),
-    author: "sdghg",
+    author: "Автор",
     content: "sdfghjhdgfgjkhggdgfh"
-}
+};
 
-//console.log(getArticles(0, 3, {author: "Петров Петр"}));
-//console.log(getArticle(1));
-//console.log(validateArticle(articles[2]));
-//console.log(addArticle(art));
-//console.log(editArticle(1, {content: "ЗДЕСЬ НОВЫЙ КОНТЕНТ"}));
-//console.log(removeArticle(20));
-console.log(articles);
+var objectForEditing = {
+    title: "Изменённое заглавие"
+};
+
+articlesService.init(articles);
+//console.log(articlesService.arrayOfArticles);
+//articlesService.displayArticles(articles);
+//articlesService.addNewArticle(objectForAdding);
+//articlesService.removeThisArticle(2);
+//articlesService.editThisArticle(1, objectForEditing);

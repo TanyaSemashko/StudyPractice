@@ -176,27 +176,30 @@ nav a:hover, nav#fixed a:hover {
     width: 80%;
     margin-left: 10%;
     float: left;
+    min-height: 500px;
 }
 
 /*Левая часть*/
 @media (min-width: 691px){
-#wrapper #leftCol {
+#wrapper #leftCol #content {
     width: 65%;
     margin-right: 10%;
     float: left;
+    min-height: 490px;
 }}
 
 @media (max-width: 690px){
-    #wrapper #leftCol {
+    #wrapper #leftCol #content {
         width: 90%;
         margin-left: 5%;
         float: left;
     }}
 
-#leftCol article {
+#leftCol #content article {
     width: 100%;
     background-color: #fff;
-    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
     float: left;
 }
 
@@ -212,9 +215,10 @@ nav a:hover, nav#fixed a:hover {
     font-size: 1.2em;
     font-family: 'Obelix';
     color: #3e3e3f;
-    width: 90%;
+    width: 70%;
     margin-left: 5%;
     float: left;
+    height: 50px;
 }
 
 #leftCol article p {
@@ -227,9 +231,18 @@ nav a:hover, nav#fixed a:hover {
 }
 
 #leftCol article a {color: #6accd7; font-size: 1.2em}
+#leftCol article a#edit {float: left; font-size: 1.2em}
+#leftCol article a#delete {float: left; font-size: 1.2em}
 #leftCol article a:hover {color: #647f82}
 
-#leftCol article span {
+#leftCol article span#author{
+    width: 110px;
+    float: right;
+    color: #7c7c7c;
+}
+
+#leftCol article span#date {
+    width: 170px;
     float: right;
     color: #7c7c7c;
 }
@@ -249,11 +262,12 @@ nav a:hover, nav#fixed a:hover {
     }}
 
 /* Футер */
+
 #wrapper #leftCol #bottom a {
     width: 65%;
-    margin-left: 35%;
+    margin-left: 25%;
     color: #6accd7;
-    font-size: 1.2em
+    font-size: 1.2em;
 }
 #wrapper #leftCol #bottom a:hover {
     color: #647f82
