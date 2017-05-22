@@ -1,0 +1,471 @@
+@charset "utf-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+
+iframe {
+    max-width: 100%;
+    float: left;
+}
+
+a, *:hover {
+    text-decoration: none;
+}
+
+body {
+    background-color: #ececee;
+    width: 100%;
+    height: 100%;
+    float: left;
+}
+
+/* Всплывающие окна*/
+
+@keyframes ANIM_NAME {
+    0% {transform: rotateY(55deg); opacity: 0;}
+    100% {transform: rotateY(0deg); opacity: 1;}
+}
+
+#popup {
+    width: 100%;
+    min-height: 100%;
+    z-index: 1005;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    display: none;
+}
+
+#in-form{
+    display: none;
+    position: fixed;
+    z-index:1010;
+    width: 30%;
+    left: 30%;
+    top: 25%;
+    bottom: 35%;
+    background: whitesmoke;
+    overflow-y: auto;
+    animation: ANIM_NAME 0.5s ease-in-out;
+    border-radius: 3%;
+}
+.close{
+    color: #9bb7ff;
+    float: right;
+    margin-left: 10%;
+    font-size: 1.3em;
+    line-height: 20px;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-top:10px;
+}
+.close:hover{
+    color: #e0e0e0;
+}
+#submit{
+    border-radius: 5%;
+    width:80px;
+    height: 35px;
+    margin-top: 15px;
+    margin-left: 140px;
+    border: none;
+    background: #5F81A3;
+    cursor: pointer;
+    padding-top: 15px;
+    text-align: center;
+}
+#submit:hover{
+    background: #789ABC;
+}
+
+#loginForm input{
+    margin-top: 30px;
+    margin-left: 70px;
+    width: 230px;
+    height: 30px;
+    font-size: 1.2em;
+    border-radius: 10%;
+    border: 2px solid #a8a8a8;
+}
+#edit-form{
+    display: none;
+}
+#send-form{
+    display: none;
+}
+#detailed-article-content{
+    display: none;
+}
+
+#send-form, #edit-form, #detailed-article-content{
+    border-radius: 2%;
+    z-index:1010;
+    position: fixed;
+    width: 60%;
+    left: 15%;
+    top: 10%;
+    bottom: 5%;
+    background: whitesmoke;
+    padding: 20pt 5% 20pt 5%;
+    overflow-y: auto;
+    animation: ANIM_NAME 0.5s ease-in-out;
+}
+
+
+#add-new input, #add-new textarea, #edit-new input, #edit-new textarea{
+    margin-left:1%;
+    width: 800px;
+    margin-top: 1%;
+    text-align: center;
+    font-size: 2.0vmax;
+    border-radius: 10%;
+    background-color: rgba(255, 255, 255, 0.95);
+    color: black;
+    font-weight: bold;
+    font-style: oblique;
+    border: 2px solid #a8a8a8;
+}
+
+#add-new textarea, #edit-new textarea{
+    resize: none;
+    height: 50px;
+    font-size: 1.2vmax;
+    border-radius: 10%;
+}
+textarea#news-content, textarea#news-content-edit{
+    height: 180px;
+    font-size: 1.0vmax;
+    border-radius: 4%;
+}
+textarea#news-tags, textarea#news-picture, textarea#news-tags-edit, textarea#news-picture-edit{
+    height: 30px;
+}
+
+.news-picture-view{
+    width: 800px;
+}
+
+#send-submit, #edit-submit{
+    border-radius: 5%;
+    width:150px;
+    height: 60px;
+    margin-top: 10px;
+    margin-left: 42%;
+    border: none;
+    background: #5F81A3;
+    cursor: pointer;
+    text-align: center;
+    line-height: 50px;
+}
+#send-submit:hover, #edit-submit:hover{
+    background: #789ABC;
+}
+
+.author-info, .author-info a{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #207fa4;
+}
+.news-tags-view{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 1.1em;
+    margin-left: 50px;
+}
+.news-tags-view div a{
+    color: #207fa4;
+    background-color: #e0e9ff;
+    margin-right: 8px;
+}
+/* Шапка*/
+
+header {
+    width: 98%;
+    float: left;
+    background-color: #690827;
+    padding: 0.5% 1%;
+}
+
+#logo {
+    font-family: 'Obelix';
+    font-size: 1.7em;
+    color: white;
+    float: left;
+    width: 25%;
+    margin-left: 15%;
+}
+
+#logo span {
+    font-size: 1.3em;
+}
+#contact {
+    float: right;
+    width: 30%;
+    margin-right: 20%;
+    margin-left: 10%;
+    font-family: Times New Roman, sans-serif
+}
+
+#contact a {
+    color: white;
+    float: right;
+    margin-left: 10%;
+    font-size: 1.4em;
+    line-height: 50px;
+}
+
+#go, #go-out, #name{
+    color: white;
+    float: right;
+    margin-left: 10%;
+    font-size: 1.4em;
+    line-height: 50px;
+    cursor: pointer;
+}
+#go-out{
+    display: none;
+}
+
+#go:hover, #go-out:hover {
+    color: #e0e0e0;
+}
+
+nav {
+    width: 98%;
+    float: left;
+    background-color: #ffffff;
+    padding: 0 1% 0.7% 1%;
+}
+nav #nav{
+    margin-left: 150px;
+}
+nav a:first-child {
+    border-top: 5px solid #6accd7;
+}
+nav a{
+    padding: 0.5% 1% 0 1%;
+    float: left;
+    margin-right: 4%;
+    font-family: Times New Roman, sans-serif;
+    font-size: 1.4em;
+    color: #686869;
+}
+
+nav a:hover, nav#fixed a:hover {
+    border-top: 5px solid #a8e0e1;
+    color: #8c8c8c;
+}
+
+/*Основная часть*/
+
+#wrapper {
+    width: 80%;
+    margin-left: 10%;
+    float: left;
+    min-height: 500px;
+}
+
+/*Левая часть*/
+#leftCol  {
+    width: 65%;
+    margin-right: 10%;
+    float: left;
+    min-height: 490px;
+}
+
+article {
+    width: 100%;
+    background-color: #fff;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    float: left;
+}
+
+#leftCol article:last-child {margin-bottom: 0}
+
+.image {
+    background-position: center;
+    width: 100%;
+    height:300px;
+    float: left;
+    margin-bottom: 10px;
+}
+
+#leftCol article h2 {
+    font-size: 1.2em;
+    font-family: 'Obelix';
+    color: #3e3e3f;
+    width: 70%;
+    margin-left: 5%;
+    float: left;
+    min-height: 15px;
+}
+
+#leftCol article p {
+    font-size: 1em;
+    font-family: Times New Roman, sans-serif;
+    color: #3e3e3f;
+    width: 86%;
+    margin: 2% 7%;
+    float: left;
+}
+
+.tag-list{
+    width: 86%;
+    margin-left:7%;
+    margin-top: 2%;
+    float: left;
+}
+
+
+/***************/
+#leftCol article label {color: #6accd7; font-size: 1.2em }
+#leftCol article .edit {float: right; width:20%; margin-right: 3%}
+#leftCol article label.delete {float: right; width:20%; margin-right: 3%}
+#leftCol article label:hover {color: #647f82}
+
+.content{
+    display: none;
+}
+
+.author{
+    width: 110px;
+    float: right;
+    color: #7c7c7c;
+}
+
+.date {
+    width: 170px;
+    float: right;
+    color: #7c7c7c;
+}
+
+
+/* Правая часть*/
+
+#wrapper #rightCol {
+    width: 25%;
+    float: left;
+}
+#rightCol #add{
+     margin-top: 20%;
+     float: left;
+     border: 3px solid #5ab5eb;
+     border-radius: 40%;
+ }
+#rightCol #add:hover{
+    background-color: #c4d3ee;
+}
+
+/* Футер */
+
+#wrapper #leftCol #bottom a {
+    width: 65%;
+    margin-left: 25%;
+    color: #6accd7;
+    font-size: 1.2em;
+}
+#wrapper #leftCol #bottom a:hover {
+    color: #647f82
+}
+
+footer {
+    width: 98%;
+    float: left;
+    padding: 0.8% 1%;
+    margin-top: 20px;
+    background-color: #50061e;
+}
+footer div#rights {
+    float: left;
+    color: white;
+    width: 45%;
+    margin-left: 5%;
+    margin-top: 20px;
+    line-height: 35px;
+    font-size: 35px;
+}
+footer div#date {
+    float: left;
+    color: white;
+    width: 20%;
+    margin-top: 40px;
+    font-size: 100%;
+}
+
+footer div#social {
+    color: white;
+    float: right;
+    width: 20%;
+    margin-right: 5%;
+    margin-top: 20px;
+    font-size: 100%;
+}
+
+.detailed-article-content
+{
+    position: relative;
+    border: 2px solid rgba(255, 255, 255, 0);
+    margin-left: 2%;
+    margin-right: 2%;
+    font-family: Monospace, cursive;
+    font-size: 2.0vmax;
+    overflow-y: auto;
+}
+
+#filter{
+    margin-top: 180px;
+    width: 250px;
+    background-color: #d7dce6;
+    border: 2px solid #727786;
+    height:240px;
+    position: fixed;
+}
+#filter h3{
+    text-align: center;
+    padding-top: 5%;
+}
+#filter label, select{
+    line-height: 30px;
+    margin-left: 10px;
+}
+#filter #author-filter, #tag-filter{
+    width: 90%;
+    margin-left:4%;
+    margin-top: 5%;
+}
+
+.filter-date label{
+    width:50px;
+}
+
+#filter .filter-date-from{
+     width: 50%;
+    margin-top: 5%;
+    margin-left: 15px;
+}
+#filter .filter-date-to{
+     width: 50%;
+    margin-left: 8px;
+}
+#filter .filter-tag{
+    width: 90%;
+    margin-left:4%;
+}
+#apply-filters{
+    margin-left:35%;
+    margin-top: 10%;
+    margin-bottom: 5%;
+    width:80px;
+    height: 40px;
+    border: none;
+    background: #5F81A3;
+    cursor: pointer;
+}
+#apply-filters:hover{
+    background: #789ABC;
+}

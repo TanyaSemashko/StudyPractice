@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<title>ITnews</title>
+	<meta name="viewport" content="user-scalable=yes, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="popup"></div>
+
+<div id="in-form">
+	<form id="loginForm">
+		<div class="close" onclick="articlesRender.buttonsClose(event)">Закрыть</div>
+		<input placeholder="Логин" align="center" id="login" type="text"><br>
+		<input placeholder="Пароль" align="center" id="password" type="password"><br>
+		<div id="submit" onclick="articlesRender.setUser(event)">Войти</div>
+	</form>
+</div>
+
+<div id="edit-form">
+	<form id="edit-new">
+		<div class="close" onclick="articlesRender.buttonsClose(event)">Закрыть</div>
+		<input placeholder="Заголовок" name="articleTitle" value="">
+		<textarea id="news-description-edit" placeholder="Краткое описание..."></textarea>
+		<textarea id="news-content-edit" placeholder="Текст новости..."></textarea>
+		<textarea id="news-tags-edit" placeholder="Теги"></textarea>
+		<textarea id="news-picture-edit" placeholder="Ссылка на фото"></textarea>
+		<div id="edit-submit" onclick="articlesRender.editArticle(event)">Изменить новость</div>
+	</form>
+</div>
+
+<div id="send-form">
+	<form id="add-new">
+		<div class="close" onclick="articlesRender.buttonsClose(event)">Закрыть</div>
+		<input placeholder="Заголовок" name="articleTitle" value="">
+		<textarea id="news-description" name="description" placeholder="Краткое описание..."></textarea>
+		<textarea id="news-content" placeholder="Текст новости..."></textarea>
+		<textarea id="news-tags" placeholder="Теги"></textarea>
+		<textarea id="news-picture" placeholder="Ссылка на фото"></textarea>
+		<div id="send-submit" onclick="articlesRender.addArticle(event)">Разместить новость</div>
+	</form>
+</div>
+
+<div id="detailed-article-content">
+	<div>
+		<div class="close" onclick="articlesRender.buttonsClose(event)">Закрыть</div>
+	</div>
+	<h1 class="news-title-view"></h1>
+	<div class="author-info">
+		<a href="#" class="news-author-view"></a>
+		<p class="news-date-view"></p>
+	</div>
+	<p class="news-content-view"></p>
+	<div class="news-tags-view">
+		<div>
+		</div>
+	</div>
+	<div><img class="news-picture-view" src=""></div>
+</div>
+
+<template id="template-articles-container">
+	<article class="post" data-id="0">
+		<div><img class="image" src=""></div>
+		<h2 class="title"></h2>
+		<label class="edit">Редактировать</label>
+		<label class="delete">Удалить</label>
+		<div class="news-tags-view">
+			<div>
+				<a href="#" class="tag"></a>
+			</div>
+		</div>
+		<p class="summary"></p>
+		<p class="content"></p>
+		<p>
+			<label class="in-full">Показать полностью...</label>
+			<span class="date"></span>
+			<span class="author"></span>
+		</p>
+
+	</article>
+</template>
+
+<header>
+	<a href="" id="logo">
+		<span>ITnews</span>
+	</a>
+	<span id="contact">
+		<label  id="go"  >Войти</label>
+        <label id="go-out">Выйти</label>
+        <label id ="name"></label>
+	</span>
+</header>
+<nav class="main-menu">
+	<div id="nav">
+		<a href="" >Главная</a>
+	</div>
+</nav>
+<div id="wrapper">
+	<div id="leftCol">
+		<div class = "content-list"></div>
+		<div id="bottom">
+			<p><a href="" title="">Показать больше...</a>
+		</div>
+	</div>
+	<div id="rightCol">
+		<div>
+			<label><img id="add" src="addnews.png"></label>
+		</div>
+			<div id="filter">
+				<h3>Фильтр</h3>
+				<form class="filters" name="filters">
+					<select id="author-filter">
+						<option id="all-authors">Выбрать автора</option>
+						<option value="1">Петрович</option>
+						<option value="1">Таня Семашко</option>
+						<option value="1">Иван Иванов</option>
+					</select>
+					<div class="filter-date">
+						<label>С</label>
+						<input class="filter-date-from" id="dateFrom" type="date">
+						<br>
+						<label>До</label>
+						<input class="filter-date-to" type="date" id="dateTo">
+					</div>
+					<select id="tag-filter" class="tags-filter">
+						<option id="all-filters">Выбрать тег</option>
+					</select>
+					<button id="apply-filters" type="button">Показать</button>
+				</form>
+			</div>
+	</div>
+</div>
+<footer>
+	<div id="rights">
+		itnews.by
+	</div>
+	<div id = "date">
+		Последнее изменение: 20.05.2017
+	</div>
+	<div id="social">
+		Семашко Татьяна <br>
+		2 курс 7 группа <br>
+		hardcore.0098@gmail.com
+	</div>
+</footer>
+<script src="container.js"></script>
+<script src="database.js"></script>
+<script src="filter.js"></script>
+<script src="articlesService.js"></script>
+<script src="articlesRender.js"></script>
+<script src="start.js"></script>
+</body>
