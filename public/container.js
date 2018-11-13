@@ -18,13 +18,13 @@ var articles = [
         title: "20 человек, которые создали Snapchat",
         summary: "Эти люди были первыми сотрудниками социального приложения, ставшего главным феноменом последних лет.",
         createdAt: new Date("2017-03-05T16:27:00"),
-        author: "Петрович",
+        author: "Петр Петрович",
         content: "За пять лет Snapchat прошёл путь от созданного в общежитии приложения с сомнительной репутацией до" +
         " бизнеса стоимостью более $24 млрд. Важную роль в восхождении проекта сыграли его ранние работники," +
         " большинство из которых были однокурсниками основателей стартапа Эвана Шпигеля и Бобби Мёрфи в" +
         " Стэнфордском университете. Business Insider отобрал 20-ку первых сотрудников компании.",
         tags: ["tag2", "tag4"],
-        image: "http://usiter.com/uploads/20111118/zhivotnie+koshki+kartinka+s+malenkim+kotyonkom+35121656913.jpg"
+        image: "http://itsocrates.com/wp-content/uploads/2016/04/1.png"
     },
     {
         id: 3,
@@ -35,7 +35,7 @@ var articles = [
         content: "Стартап Algoriz разрабатывает платформу, клиенты которой могут создавать алгоритмы для " +
         "трейдинга с помощью простых текстовых запросов, рассказывает TechCrunch.",
         tags: ["tag3", "tag4"],
-        image: "http://www.zooclub.ru/skat/img.php?w=700&h=700&img=./attach/12000/12669.jpg"
+        image: "http://www.towave.ru/sites/default/files/imagecache/original/wysiwyg_imageupload/user-12/825s.png"
     },
     {
         id: 4,
@@ -66,7 +66,7 @@ var articles = [
         summary: "Сегодня начинаются торги акциями Snap Inc, создателя Snapchat. Компания ожидает привлечь $3,4 млрд при оценке" +
         " в $24 млрд.",
         createdAt: new Date("2017-03-02T11:52:00"),
-        author: "Петрович",
+        author: "Петр Петрович",
         content: "IPO Snapchat обещает стать одним из крупнейших в истории: акции компании размещены по цене $17 за штуку." +
         " Основатели надеются привлечь $3,4 млрд при оценке компании в $24 млрд, сообщает TechCrunch.",
         tags: ["tag2", "tag3", "tag5"],
@@ -253,7 +253,7 @@ function comparator(a, b) {
 
 articles.sort(comparator);
 
-//localStorage.clear();
+localStorage.clear();
 if (!localStorage.getItem("articles")) {
     localStorage.setItem('articles', JSON.stringify(articles));
 }

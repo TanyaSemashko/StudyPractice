@@ -9,7 +9,7 @@ var database = (function () {
             password: '22222',
         },
         {
-            login: 'Петрович',
+            login: 'Петр Петрович',
             password: '33333',
         }
     ];

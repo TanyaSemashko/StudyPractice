@@ -4,6 +4,7 @@ var articlesService = (function () {
     var articles = [];
 
     function init() {
+        //localStorage.setItem('');
         articles = JSON.parse(localStorage.getItem('articles'));
         articles.forEach(item => item.createdAt = new Date(item.createdAt));
         tags = JSON.parse(localStorage.getItem('tags'));
